@@ -17,12 +17,21 @@ declare module "@tanstack/react-router" {
 	}
 }
 
+const AppLoader = () => (
+	<div className="flex min-h-screen items-center justify-center bg-background">
+		<div className="flex flex-col items-center gap-4">
+			<div className="h-10 w-10 animate-spin rounded-full border-2 border-muted border-t-foreground" />
+			<span className="text-sm text-muted-foreground">Loading...</span>
+		</div>
+	</div>
+);
+
 const rootElement = document.querySelector("#root") as Element;
 if (!rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement);
 	root.render(
 		<React.StrictMode>
-			<React.Suspense fallback="loading">
+			<React.Suspense fallback={<AppLoader />}>
 				<App router={router} />
 			</React.Suspense>
 		</React.StrictMode>

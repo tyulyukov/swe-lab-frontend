@@ -9,38 +9,148 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as MyRegistrationsRouteImport } from './routes/my-registrations'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsNewRouteImport } from './routes/events_.new'
+import { Route as EventsEventIdRouteImport } from './routes/events_.$eventId'
 
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyRegistrationsRoute = MyRegistrationsRouteImport.update({
+  id: '/my-registrations',
+  path: '/my-registrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsNewRoute = EventsNewRouteImport.update({
+  id: '/events_/new',
+  path: '/events/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/events_/$eventId',
+  path: '/events/$eventId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/login': typeof LoginRoute
+  '/my-registrations': typeof MyRegistrationsRoute
+  '/register': typeof RegisterRoute
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/new': typeof EventsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/login': typeof LoginRoute
+  '/my-registrations': typeof MyRegistrationsRoute
+  '/register': typeof RegisterRoute
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/new': typeof EventsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/login': typeof LoginRoute
+  '/my-registrations': typeof MyRegistrationsRoute
+  '/register': typeof RegisterRoute
+  '/events_/$eventId': typeof EventsEventIdRoute
+  '/events_/new': typeof EventsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/events'
+    | '/login'
+    | '/my-registrations'
+    | '/register'
+    | '/events/$eventId'
+    | '/events/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/events'
+    | '/login'
+    | '/my-registrations'
+    | '/register'
+    | '/events/$eventId'
+    | '/events/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/events'
+    | '/login'
+    | '/my-registrations'
+    | '/register'
+    | '/events_/$eventId'
+    | '/events_/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventsRoute: typeof EventsRoute
+  LoginRoute: typeof LoginRoute
+  MyRegistrationsRoute: typeof MyRegistrationsRoute
+  RegisterRoute: typeof RegisterRoute
+  EventsEventIdRoute: typeof EventsEventIdRoute
+  EventsNewRoute: typeof EventsNewRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-registrations': {
+      id: '/my-registrations'
+      path: '/my-registrations'
+      fullPath: '/my-registrations'
+      preLoaderRoute: typeof MyRegistrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +158,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events_/new': {
+      id: '/events_/new'
+      path: '/events/new'
+      fullPath: '/events/new'
+      preLoaderRoute: typeof EventsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events_/$eventId': {
+      id: '/events_/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventsRoute: EventsRoute,
+  LoginRoute: LoginRoute,
+  MyRegistrationsRoute: MyRegistrationsRoute,
+  RegisterRoute: RegisterRoute,
+  EventsEventIdRoute: EventsEventIdRoute,
+  EventsNewRoute: EventsNewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
