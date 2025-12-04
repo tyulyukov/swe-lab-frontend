@@ -51,12 +51,12 @@ function RegisterPage() {
 					Create an account
 				</h1>
 
-				<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+				<form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
 					<div className="grid grid-cols-2 gap-4">
 						<div>
 							<label
-								htmlFor="first_name"
 								className="mb-1.5 block text-sm font-medium text-foreground"
+								htmlFor="first_name"
 							>
 								First name
 							</label>
@@ -75,8 +75,8 @@ function RegisterPage() {
 						</div>
 						<div>
 							<label
-								htmlFor="last_name"
 								className="mb-1.5 block text-sm font-medium text-foreground"
+								htmlFor="last_name"
 							>
 								Last name
 							</label>
@@ -97,8 +97,8 @@ function RegisterPage() {
 
 					<div>
 						<label
-							htmlFor="email"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="email"
 						>
 							Email
 						</label>
@@ -116,8 +116,8 @@ function RegisterPage() {
 
 					<div>
 						<label
-							htmlFor="password"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="password"
 						>
 							Password
 						</label>
@@ -137,8 +137,8 @@ function RegisterPage() {
 
 					<div>
 						<label
-							htmlFor="passwordConfirm"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="passwordConfirm"
 						>
 							Confirm password
 						</label>
@@ -163,9 +163,9 @@ function RegisterPage() {
 					)}
 
 					<button
-						type="submit"
-						disabled={registerMutation.isPending}
 						className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+						disabled={registerMutation.isPending}
+						type="submit"
 					>
 						{registerMutation.isPending ? "Creating account..." : "Create account"}
 					</button>
@@ -174,8 +174,8 @@ function RegisterPage() {
 				<p className="mt-6 text-center text-sm text-muted-foreground">
 					Already have an account?{" "}
 					<Link
-						to="/login"
 						className="font-medium text-foreground underline-offset-4 hover:underline"
+						to="/login"
 					>
 						Sign in
 					</Link>

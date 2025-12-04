@@ -13,8 +13,8 @@ type ApiResponse<T> = {
 	data: T;
 };
 
-const getEvents = async (): Promise<Event[]> => {
-	const response = await apiClient.get<ApiResponse<Event[]>>("/events");
+const getEvents = async (): Promise<Array<Event>> => {
+	const response = await apiClient.get<ApiResponse<Array<Event>>>("/events");
 	return response.data.data;
 };
 
@@ -50,7 +50,7 @@ const deleteEvent = async (id: string): Promise<void> => {
 };
 
 export const useEvents = () =>
-	useQuery<Event[]>({
+	useQuery<Array<Event>>({
 		queryKey: ["events"],
 		queryFn: getEvents,
 	});

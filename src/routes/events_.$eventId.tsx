@@ -68,7 +68,7 @@ function EditEventPage() {
 	}, [event, reset]);
 
 	const onSubmit = (data: EventFormData): void => {
-		const limitNum = data.limit_participants ? Number.parseInt(data.limit_participants, 10) : null;
+		const limitNumber = data.limit_participants ? Number.parseInt(data.limit_participants, 10) : null;
 		const payload = {
 			name: data.name,
 			is_online: data.is_online,
@@ -76,7 +76,7 @@ function EditEventPage() {
 			location: data.location || null,
 			link: data.link || null,
 			description: data.description || null,
-			limit_participants: limitNum && !Number.isNaN(limitNum) ? limitNum : null,
+			limit_participants: limitNumber && !Number.isNaN(limitNumber) ? limitNumber : null,
 			tags: data.tags ? data.tags.split(",").map((t) => t.trim()).filter(Boolean) : null,
 		}
 		updateEventMutation.mutate({ id: eventId, data: payload });
@@ -100,11 +100,11 @@ function EditEventPage() {
 				Edit Event
 			</h1>
 
-			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+			<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<label
-						htmlFor="name"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="name"
 					>
 						Event Name *
 					</label>
@@ -127,15 +127,15 @@ function EditEventPage() {
 						{...register("is_online")}
 						className="h-4 w-4 rounded border-input bg-background text-primary focus:ring-ring"
 					/>
-					<label htmlFor="is_online" className="text-sm font-medium text-foreground">
+					<label className="text-sm font-medium text-foreground" htmlFor="is_online">
 						This is an online event
 					</label>
 				</div>
 
 				<div>
 					<label
-						htmlFor="event_date"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="event_date"
 					>
 						Event Date & Time *
 					</label>
@@ -153,8 +153,8 @@ function EditEventPage() {
 				{!isOnline && (
 					<div>
 						<label
-							htmlFor="location"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="location"
 						>
 							Location
 						</label>
@@ -171,8 +171,8 @@ function EditEventPage() {
 				{isOnline && (
 					<div>
 						<label
-							htmlFor="link"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="link"
 						>
 							Event Link
 						</label>
@@ -191,8 +191,8 @@ function EditEventPage() {
 
 				<div>
 					<label
-						htmlFor="description"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="description"
 					>
 						Description
 					</label>
@@ -207,15 +207,15 @@ function EditEventPage() {
 
 				<div>
 					<label
-						htmlFor="limit_participants"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="limit_participants"
 					>
 						Max Participants
 					</label>
 					<input
 						id="limit_participants"
-						type="number"
 						min="1"
+						type="number"
 						{...register("limit_participants")}
 						className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
 						placeholder="Leave empty for unlimited"
@@ -224,8 +224,8 @@ function EditEventPage() {
 
 				<div>
 					<label
-						htmlFor="tags"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="tags"
 					>
 						Tags
 					</label>
@@ -245,9 +245,9 @@ function EditEventPage() {
 				)}
 
 				<button
-					type="submit"
-					disabled={updateEventMutation.isPending}
 					className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+					disabled={updateEventMutation.isPending}
+					type="submit"
 				>
 					{updateEventMutation.isPending ? "Saving..." : "Save Changes"}
 				</button>

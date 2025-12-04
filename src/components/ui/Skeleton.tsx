@@ -31,8 +31,8 @@ export function EventCardSkeleton() {
 export function EventsGridSkeleton() {
 	return (
 		<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-			{Array.from({ length: 6 }).map((_, i) => (
-				<EventCardSkeleton key={i} />
+			{Array.from({ length: 6 }).map((_, index) => (
+				<EventCardSkeleton key={index} />
 			))}
 		</div>
 	);
@@ -101,8 +101,8 @@ export function RegistrationCardSkeleton() {
 export function RegistrationsListSkeleton() {
 	return (
 		<div className="space-y-4">
-			{Array.from({ length: 3 }).map((_, i) => (
-				<RegistrationCardSkeleton key={i} />
+			{Array.from({ length: 3 }).map((_, index) => (
+				<RegistrationCardSkeleton key={index} />
 			))}
 		</div>
 	);

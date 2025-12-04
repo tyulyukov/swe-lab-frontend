@@ -49,7 +49,7 @@ function CreateEventPage() {
 	const isOnline = watch("is_online");
 
 	const onSubmit = (data: EventFormData): void => {
-		const limitNum = data.limit_participants ? Number.parseInt(data.limit_participants, 10) : null;
+		const limitNumber = data.limit_participants ? Number.parseInt(data.limit_participants, 10) : null;
 		const payload = {
 			name: data.name,
 			is_online: data.is_online,
@@ -57,7 +57,7 @@ function CreateEventPage() {
 			location: data.location || null,
 			link: data.link || null,
 			description: data.description || null,
-			limit_participants: limitNum && !Number.isNaN(limitNum) ? limitNum : null,
+			limit_participants: limitNumber && !Number.isNaN(limitNumber) ? limitNumber : null,
 			tags: data.tags ? data.tags.split(",").map((t) => t.trim()).filter(Boolean) : null,
 		}
 		createEventMutation.mutate(payload);
@@ -69,11 +69,11 @@ function CreateEventPage() {
 				Create New Event
 			</h1>
 
-			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+			<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<label
-						htmlFor="name"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="name"
 					>
 						Event Name *
 					</label>
@@ -96,15 +96,15 @@ function CreateEventPage() {
 						{...register("is_online")}
 						className="h-4 w-4 rounded border-input bg-background text-primary focus:ring-ring"
 					/>
-					<label htmlFor="is_online" className="text-sm font-medium text-foreground">
+					<label className="text-sm font-medium text-foreground" htmlFor="is_online">
 						This is an online event
 					</label>
 				</div>
 
 				<div>
 					<label
-						htmlFor="event_date"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="event_date"
 					>
 						Event Date & Time *
 					</label>
@@ -122,8 +122,8 @@ function CreateEventPage() {
 				{!isOnline && (
 					<div>
 						<label
-							htmlFor="location"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="location"
 						>
 							Location
 						</label>
@@ -140,8 +140,8 @@ function CreateEventPage() {
 				{isOnline && (
 					<div>
 						<label
-							htmlFor="link"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="link"
 						>
 							Event Link
 						</label>
@@ -160,8 +160,8 @@ function CreateEventPage() {
 
 				<div>
 					<label
-						htmlFor="description"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="description"
 					>
 						Description
 					</label>
@@ -176,15 +176,15 @@ function CreateEventPage() {
 
 				<div>
 					<label
-						htmlFor="limit_participants"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="limit_participants"
 					>
 						Max Participants
 					</label>
 					<input
 						id="limit_participants"
-						type="number"
 						min="1"
+						type="number"
 						{...register("limit_participants")}
 						className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
 						placeholder="Leave empty for unlimited"
@@ -193,8 +193,8 @@ function CreateEventPage() {
 
 				<div>
 					<label
-						htmlFor="tags"
 						className="mb-1.5 block text-sm font-medium text-foreground"
+						htmlFor="tags"
 					>
 						Tags
 					</label>
@@ -214,9 +214,9 @@ function CreateEventPage() {
 				)}
 
 				<button
-					type="submit"
-					disabled={createEventMutation.isPending}
 					className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+					disabled={createEventMutation.isPending}
+					type="submit"
 				>
 					{createEventMutation.isPending ? "Creating..." : "Create Event"}
 				</button>

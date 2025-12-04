@@ -81,8 +81,8 @@ function MyRegistrationsPage() {
 						You haven&apos;t registered for any events yet
 					</p>
 					<Link
-						to="/events"
 						className="inline-block rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+						to="/events"
 					>
 						Browse Events
 					</Link>
@@ -120,10 +120,10 @@ function MyRegistrationsPage() {
 												viewBox="0 0 24 24"
 											>
 												<path
+													d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 													strokeLinecap="round"
 													strokeLinejoin="round"
 													strokeWidth={2}
-													d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 												/>
 											</svg>
 											{dayjs(registration.event?.eventDate).format(
@@ -139,16 +139,16 @@ function MyRegistrationsPage() {
 													viewBox="0 0 24 24"
 												>
 													<path
+														d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
 														strokeLinecap="round"
 														strokeLinejoin="round"
 														strokeWidth={2}
-														d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
 													/>
 													<path
+														d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 														strokeLinecap="round"
 														strokeLinejoin="round"
 														strokeWidth={2}
-														d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 													/>
 												</svg>
 												{registration.event.location}
@@ -162,10 +162,10 @@ function MyRegistrationsPage() {
 												viewBox="0 0 24 24"
 											>
 												<path
+													d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
 													strokeLinecap="round"
 													strokeLinejoin="round"
 													strokeWidth={2}
-													d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
 												/>
 											</svg>
 											Registered {dayjs(registration.createdAt).format("MMM D, YYYY")}
@@ -175,24 +175,24 @@ function MyRegistrationsPage() {
 									{editingId === registration.eventId ? (
 										<div className="mt-4 flex gap-2">
 											<input
+												className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+												placeholder="Your comment"
 												type="text"
 												value={editComment}
-												onChange={(e) => setEditComment(e.target.value)}
-												placeholder="Your comment"
-												className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+												onChange={(e) => { setEditComment(e.target.value); }}
 											/>
 											<button
-												type="button"
-												onClick={() => handleEditSave(registration.eventId)}
-												disabled={updateMutation.isPending}
 												className="rounded-md bg-success px-4 py-2 text-sm font-medium text-success-foreground transition-colors hover:bg-success/80 disabled:opacity-50"
+												disabled={updateMutation.isPending}
+												type="button"
+												onClick={() => { handleEditSave(registration.eventId); }}
 											>
 												Save
 											</button>
 											<button
-												type="button"
-												onClick={() => setEditingId(null)}
 												className="rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+												type="button"
+												onClick={() => { setEditingId(null); }}
 											>
 												Cancel
 											</button>
@@ -213,19 +213,19 @@ function MyRegistrationsPage() {
 
 								<div className="flex gap-2 sm:flex-col">
 									<button
+										className="flex-1 rounded-md bg-secondary px-4 py-2 text-center text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 sm:flex-none"
 										type="button"
 										onClick={() =>
-											handleEditStart(registration.eventId, registration.comment)
+											{ handleEditStart(registration.eventId, registration.comment); }
 										}
-										className="flex-1 rounded-md bg-secondary px-4 py-2 text-center text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 sm:flex-none"
 									>
 										Edit Comment
 									</button>
 									<button
-										type="button"
-										onClick={() => handleUnregister(registration.eventId)}
-										disabled={unregisterMutation.isPending}
 										className="flex-1 rounded-md bg-destructive px-4 py-2 text-center text-sm font-medium text-destructive-foreground transition-colors hover:bg-destructive/80 disabled:opacity-50 sm:flex-none"
+										disabled={unregisterMutation.isPending}
+										type="button"
+										onClick={() => { handleUnregister(registration.eventId); }}
 									>
 										Cancel
 									</button>

@@ -16,7 +16,7 @@ const App = ({ router }: AppProps): FunctionComponent => {
 	useEffect(() => {
 		setAuthCallbacks(
 			() => useAuthStore.getState().token,
-			() => useAuthStore.getState().logout(),
+			() => { useAuthStore.getState().logout(); },
 		);
 	}, []);
 

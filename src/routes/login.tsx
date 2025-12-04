@@ -43,11 +43,11 @@ function LoginPage() {
 					Welcome back
 				</h1>
 
-				<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+				<form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
 					<div>
 						<label
-							htmlFor="email"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="email"
 						>
 							Email
 						</label>
@@ -65,8 +65,8 @@ function LoginPage() {
 
 					<div>
 						<label
-							htmlFor="password"
 							className="mb-1.5 block text-sm font-medium text-foreground"
+							htmlFor="password"
 						>
 							Password
 						</label>
@@ -91,9 +91,9 @@ function LoginPage() {
 					)}
 
 					<button
-						type="submit"
-						disabled={loginMutation.isPending}
 						className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+						disabled={loginMutation.isPending}
+						type="submit"
 					>
 						{loginMutation.isPending ? "Signing in..." : "Sign in"}
 					</button>
@@ -102,8 +102,8 @@ function LoginPage() {
 				<p className="mt-6 text-center text-sm text-muted-foreground">
 					Don&apos;t have an account?{" "}
 					<Link
-						to="/register"
 						className="font-medium text-foreground underline-offset-4 hover:underline"
+						to="/register"
 					>
 						Sign up
 					</Link>

@@ -3,8 +3,8 @@ import { AxiosError } from "axios";
 type ApiErrorResponse = {
 	errorType: string;
 	errorMessage: string;
-	errors: string[] | null;
-	errorsValidation: Record<string, string>[] | null;
+	errors: Array<string> | null;
+	errorsValidation: Array<Record<string, string>> | null;
 };
 
 export function getApiErrorMessage(error: unknown): string {
@@ -15,7 +15,7 @@ export function getApiErrorMessage(error: unknown): string {
 		}
 		if (data.errorsValidation && data.errorsValidation.length > 0) {
 			return data.errorsValidation
-				.map((err) => Object.values(err).join(", "))
+				.map((error_) => Object.values(error_).join(", "))
 				.join(", ");
 		}
 		if (data.errorMessage) {

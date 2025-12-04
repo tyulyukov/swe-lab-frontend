@@ -12,9 +12,9 @@ type ApiResponse<T> = {
 	data: T;
 };
 
-const getMyRegistrations = async (): Promise<EventRegistration[]> => {
+const getMyRegistrations = async (): Promise<Array<EventRegistration>> => {
 	const response =
-		await apiClient.get<ApiResponse<EventRegistration[]>>(
+		await apiClient.get<ApiResponse<Array<EventRegistration>>>(
 			"/event-registrations",
 		);
 	return response.data.data;
@@ -58,7 +58,7 @@ const deleteRegistration = async (eventId: string): Promise<void> => {
 };
 
 export const useMyRegistrations = () =>
-	useQuery<EventRegistration[]>({
+	useQuery<Array<EventRegistration>>({
 		queryKey: ["registrations"],
 		queryFn: getMyRegistrations,
 	});

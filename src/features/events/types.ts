@@ -17,12 +17,12 @@ export type Event = {
 	location: string | null;
 	link: string | null;
 	description: string | null;
-	imageUrls: string[] | null;
-	tags: string[] | null;
+	imageUrls: Array<string> | null;
+	tags: Array<string> | null;
 	limitParticipants: number | null;
 	createdAt: string;
 	speaker: User | null;
-	registrations?: EventRegistration[];
+	registrations?: Array<EventRegistration>;
 };
 
 export type EventRegistration = {
@@ -41,8 +41,8 @@ export type CreateEventPayload = {
 	location?: string | null;
 	link?: string | null;
 	description?: string | null;
-	image_urls?: string[] | null;
-	tags?: string[] | null;
+	image_urls?: Array<string> | null;
+	tags?: Array<string> | null;
 	limit_participants?: number | null;
 };
 

@@ -16,30 +16,30 @@ export function RootLayout() {
 				<nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center gap-8">
 						<Link
-							to="/events"
 							className="text-xl font-semibold tracking-tight text-foreground"
+							to="/events"
 						>
 							EventHub
 						</Link>
 						<div className="hidden items-center gap-6 md:flex">
 							<Link
-								to="/events"
 								className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground"
+								to="/events"
 							>
 								Events
 							</Link>
 							{isAuthenticated() && (
 								<Link
-									to="/my-registrations"
 									className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground"
+									to="/my-registrations"
 								>
 									My Registrations
 								</Link>
 							)}
 							{user?.role === UserRole.SPEAKER && (
 								<Link
-									to="/events/new"
 									className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground [&.active]:text-foreground"
+									to="/events/new"
 								>
 									Create Event
 								</Link>
@@ -56,9 +56,9 @@ export function RootLayout() {
 									</span>
 								</span>
 								<button
+									className="rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
 									type="button"
 									onClick={handleLogout}
-									className="rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
 								>
 									Logout
 								</button>
@@ -66,14 +66,14 @@ export function RootLayout() {
 						) : (
 							<>
 								<Link
-									to="/login"
 									className="rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+									to="/login"
 								>
 									Login
 								</Link>
 								<Link
-									to="/register"
 									className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+									to="/register"
 								>
 									Sign Up
 								</Link>

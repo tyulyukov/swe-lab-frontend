@@ -83,8 +83,8 @@ function EventsListPage() {
 				</div>
 				{user?.role === UserRole.SPEAKER && (
 					<Link
-						to="/events/new"
 						className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+						to="/events/new"
 					>
 						Create Event
 					</Link>
@@ -143,10 +143,10 @@ function EventsListPage() {
 										viewBox="0 0 24 24"
 									>
 										<path
+											d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 											strokeLinecap="round"
 											strokeLinejoin="round"
 											strokeWidth={2}
-											d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 										/>
 									</svg>
 									{dayjs(event.eventDate).format("MMM D, YYYY • h:mm A")}
@@ -160,16 +160,16 @@ function EventsListPage() {
 											viewBox="0 0 24 24"
 										>
 											<path
+												d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 												strokeWidth={2}
-												d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
 											/>
 											<path
+												d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 												strokeWidth={2}
-												d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 											/>
 										</svg>
 										{event.location}
@@ -184,10 +184,10 @@ function EventsListPage() {
 											viewBox="0 0 24 24"
 										>
 											<path
+												d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 												strokeWidth={2}
-												d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
 											/>
 										</svg>
 										{event.speaker.firstName} {event.speaker.lastName}
@@ -202,10 +202,10 @@ function EventsListPage() {
 											viewBox="0 0 24 24"
 										>
 											<path
+												d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 												strokeWidth={2}
-												d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
 											/>
 										</svg>
 										{event.registrations?.length || 0} / {event.limitParticipants} registered
@@ -217,17 +217,17 @@ function EventsListPage() {
 								{user?.role === UserRole.SPEAKER && user.id === event.speaker?.id && (
 									<>
 										<Link
-											to="/events/$eventId"
-											params={{ eventId: event.id }}
 											className="flex-1 rounded-md bg-secondary py-2 text-center text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+											params={{ eventId: event.id }}
+											to="/events/$eventId"
 										>
 											Edit
 										</Link>
 										<button
-											type="button"
-											onClick={() => handleDelete(event.id)}
-											disabled={deleteEventMutation.isPending}
 											className="rounded-md bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground transition-colors hover:bg-destructive/80 disabled:opacity-50"
+											disabled={deleteEventMutation.isPending}
+											type="button"
+											onClick={() => { handleDelete(event.id); }}
 										>
 											Delete
 										</button>
@@ -237,38 +237,38 @@ function EventsListPage() {
 									<>
 										{isRegistered(event.id) ? (
 											<button
-												type="button"
-												onClick={() => handleUnregister(event.id)}
-												disabled={unregisterMutation.isPending}
 												className="flex-1 rounded-md bg-destructive py-2 text-center text-sm font-medium text-destructive-foreground transition-colors hover:bg-destructive/80 disabled:opacity-50"
+												disabled={unregisterMutation.isPending}
+												type="button"
+												onClick={() => { handleUnregister(event.id); }}
 											>
 												Cancel Registration
 											</button>
 										) : registeringEventId === event.id ? (
 											<div className="flex flex-1 flex-col gap-2">
 												<input
+													className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+													placeholder="Add a comment (optional)"
 													type="text"
 													value={commentInput}
-													onChange={(e) => setCommentInput(e.target.value)}
-													placeholder="Add a comment (optional)"
-													className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+													onChange={(e) => { setCommentInput(e.target.value); }}
 												/>
 												<div className="flex gap-2">
 													<button
-														type="button"
-														onClick={() => handleRegister(event.id)}
-														disabled={registerMutation.isPending}
 														className="flex-1 rounded-md bg-success py-2 text-center text-sm font-medium text-success-foreground transition-colors hover:bg-success/80 disabled:opacity-50"
+														disabled={registerMutation.isPending}
+														type="button"
+														onClick={() => { handleRegister(event.id); }}
 													>
 														{registerMutation.isPending ? "..." : "Confirm"}
 													</button>
 													<button
+														className="rounded-md bg-secondary px-3 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
 														type="button"
 														onClick={() => {
 															setRegisteringEventId(null);
 															setCommentInput("");
 														}}
-														className="rounded-md bg-secondary px-3 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
 													>
 														Cancel
 													</button>
@@ -276,9 +276,9 @@ function EventsListPage() {
 											</div>
 										) : (
 											<button
-												type="button"
-												onClick={() => setRegisteringEventId(event.id)}
 												className="flex-1 rounded-md bg-primary py-2 text-center text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+												type="button"
+												onClick={() => { setRegisteringEventId(event.id); }}
 											>
 												Register
 											</button>
@@ -287,8 +287,8 @@ function EventsListPage() {
 								)}
 								{!isAuthenticated() && (
 									<Link
-										to="/login"
 										className="flex-1 rounded-md bg-primary py-2 text-center text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+										to="/login"
 									>
 										Login to Register
 									</Link>
